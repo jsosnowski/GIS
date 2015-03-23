@@ -1,0 +1,65 @@
+\documentclass[12pt,oneside,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,polish]{babel}
+\usepackage{polski}
+\usepackage{float}
+\usepackage{hyperref} %spis treści niech będzie łączami
+\hypersetup{
+	plainpages=false,
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage{graphicx}
+\usepackage{pbox}
+\usepackage{tabto}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+% ustawienia środowiska algorytm
+\floatname{algorithm}{Algorytm}
+\renewcommand{\algorithmicfunction}{\textbf{funkcja}}
+% koniec ustawień
+
+% blokada dzielenia wyrazów (dla kopiowania do Worda)
+% \hyphenpenalty 10000
+% \exhyphenpenalty 10000
+% koniec ustawień blokady
+
+\begin{document}
+\author{Łukasz Marcinkowski}
+\author{Łukasz Marcinkowski \and Jacek Sosnowski}
+\title{Optymalizacja wydajności wybranych algorytmów grafowych.}
+%\pagenumbering{alph}
+\maketitle
+
+%\chapter{Specyfikacja projektu}
+
+\section{Specyfikacja projektu}
+
+\subsection{Opis zadania}
+
+Zadaniem projektu jest porównanie dwóch implementacji algorytmu poszukiwania cyklu Eulera. Przedstawione zostaną dwie realizacje, jedna w języku Java oraz druga w C++. Obie zostaną przetestowane na tych samych grafach. Ostatecznie obie implementacje będą ocenione pod względem wydajności.
+
+\subsection{Algorytm}
+
+Do znalezienia cyklu Eulera w zadanym grafie w obu implementacjach zostanie zastosowany algorytm Fleury'ego. Realizacja algorytmu Fleury'ego będzie opierać się o wykorzystanie stosu. 
+
+\subsection{Testowanie i ewaluacja}
+
+Proces testowania będzie składać się z kilku etapów: testowanie jednostkowe, akceptacyjne oraz wydajnościowe. Dwa pierwsze mają za zadanie zbudowanie zaufania do poprawnego działania aplikacji, natomiast ostatni będzie służył ewaluacji wydajności implementacji. 
+
+Ocena wydajności będzie oparta o dużą serię uruchomień aplikacji z różnymi danymi wejściowymi (zadanymi grafami). Czynnikami wpływającymi będą wielkość grafu i liczba dostępnych krawędzi. Oddzielne wnioski zostaną wysunięte dla grafów zawierających cykl Eulera i tych które go nie posiadają. 
+
+\begin{thebibliography}{9}
+
+\bibitem{Wojciechowski} J. Wojciechowski, K. Pieńkosz, \emph{Grafy i sieci}, Wydawnictwo Naukowe PWN, 2013
+
+\bibitem{Cormen} T.H. Cormen, C.E. Leiserson, R.L. Rivest, \emph{Wprowadzenie do algorytmów}, Wydawnictwo
+Naukowo-Techniczne, Warszawa 2001.
+
+\end{thebibliography}
+
+\end{document}
