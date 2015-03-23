@@ -41,17 +41,31 @@
 
 \subsection{Opis zadania}
 
-Zadaniem projektu jest porównanie dwóch implementacji algorytmu poszukiwania cyklu Eulera. Przedstawione zostaną dwie realizacje, jedna w języku Java oraz druga w C++. Obie zostaną przetestowane na tych samych grafach. Ostatecznie obie implementacje będą ocenione pod względem wydajności.
+Zadaniem projektu jest porównanie dwóch implementacji algorytmu poszukiwania cyklu Eulera. 
+Przedstawione zostaną dwie realizacje, jedna w języku Java oraz druga w C++. 
+Obie zostaną przetestowane na tych samych grafach. 
+Ostatecznie obie implementacje będą ocenione pod względem wydajności.
 
 \subsection{Algorytm}
 
-Do znalezienia cyklu Eulera w zadanym grafie w obu implementacjach zostanie zastosowany algorytm Fleury'ego. Realizacja algorytmu Fleury'ego będzie opierać się o wykorzystanie stosu. 
+W przypadku każdego grafu będzie zakładane, że jest spójny i posiada co najmniej 2 wierzchołki (lub 3 w przypadku grafu nieskierowanego). 
+Nie umniejszając ogólności algorytmu będzie przestrzegane założenie iż żaden wierzchołek nie jest izolowany. 
+Izolowane wierzchołki i tak nie mają wpływu na cykl Eulera. 
+Grafy będą przechowywane w postaci tekstowej w plikach według wybranego formatu spośród przedstawionych w pracy Cormena \cite{Cormen} w rozdziale 23.
+
+Do znalezienia cyklu Eulera w zadanym grafie w obu implementacjach zostanie zastosowany algorytm Fleury'ego \cite{Wojciechowski}. 
+Jego działanie opiera się na wyborze wierzchołka startowego, a następnie budowie ścieżki przez wszystkie krawędzie w grafie, aż do jej zamknięcia w punkcie startowym. 
+W każdym kroku budowy ścieżki, preferowane są te krawędzie, które nie są mostkami (unikanie rozspójnienia grafu).
+Realizacja algorytmu Fleury'ego będzie opierać się o wykorzystanie stosu, który łagodzi konieczność sprawdzania czy krawędź jest mostkiem, co jednocześnie zmniejsza złożoność algorytmu.
 
 \subsection{Testowanie i ewaluacja}
 
-Proces testowania będzie składać się z kilku etapów: testowanie jednostkowe, akceptacyjne oraz wydajnościowe. Dwa pierwsze mają za zadanie zbudowanie zaufania do poprawnego działania aplikacji, natomiast ostatni będzie służył ewaluacji wydajności implementacji. 
+Proces testowania będzie składać się z kilku etapów: testowanie jednostkowe, akceptacyjne oraz wydajnościowe. 
+Dwa pierwsze mają za zadanie zbudowanie zaufania do poprawnego działania aplikacji, natomiast ostatni będzie służył ewaluacji wydajności implementacji. 
 
-Ocena wydajności będzie oparta o dużą serię uruchomień aplikacji z różnymi danymi wejściowymi (zadanymi grafami). Czynnikami wpływającymi będą wielkość grafu i liczba dostępnych krawędzi. Oddzielne wnioski zostaną wysunięte dla grafów zawierających cykl Eulera i tych które go nie posiadają. 
+Ocena wydajności będzie oparta o dużą serię uruchomień aplikacji z różnymi danymi wejściowymi (zadanymi grafami). 
+Czynnikami wpływającymi będą wielkość grafu i liczba dostępnych krawędzi. 
+Oddzielne wnioski zostaną wysunięte dla grafów zawierających cykl Eulera i tych które go nie posiadają. 
 
 \begin{thebibliography}{9}
 
