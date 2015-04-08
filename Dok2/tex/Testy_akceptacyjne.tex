@@ -1,0 +1,339 @@
+
+\begin{table}
+\caption{Grafy zawierające cykl Eulera.}
+\label{GrafyZCyklemEulera}
+\flushleft
+
+\setlength\tabcolsep{2pt}
+\begin{tabular}{@{}ccc@{}}
+
+% Trójkąt nieskierowany
+%\fbox{
+\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (A)                    {$0$};
+  \node[state]         (B) [below right of=A] {$1$};
+  \node[state]         (C) [below left of=A] {$2$};
+
+  \path (A) edge node {} (B)
+        (B) edge node {} (C)
+        (C) edge node {} (A)
+  ; %end path
+
+\end{tikzpicture} %}//end of \fbox - dodaje ramkę
+&
+%Trójkąt skierowany
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (A)                    {$0$};
+  \node[state]         (B) [below right of=A] {$1$};
+  \node[state]         (C) [below left of=A] {$2$};
+
+  \path (A) edge node {} (B)
+        (B) edge node {} (C)
+        (C) edge node {} (A)
+  ; %end path
+
+\end{tikzpicture} 
+&
+% Prostokąt nieskierowany
+\begin{tikzpicture}[-,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (A)                    {$0$};
+  \node[state]         (B) [right of=A] {$1$};
+  \node[state]         (C) [below of=B] {$2$};
+  \node[state]         (D) [below of=A] {$3$};
+
+  \path (A) edge node {} (B)
+        (B) edge node {} (C)
+        (C) edge node {} (D)
+        (D) edge node {} (A)
+  ; %end path
+
+\end{tikzpicture}
+\\
+% Prostokąt skierowany
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (A)                    {$0$};
+  \node[state]         (B) [right of=A] {$1$};
+  \node[state]         (C) [below of=B] {$2$};
+  \node[state]         (D) [below of=A] {$3$};
+
+  \path (A) edge node {} (B)
+        (B) edge node {} (C)
+        (C) edge node {} (D)
+        (D) edge node {} (A)
+  ; %end path
+
+\end{tikzpicture}
+&
+% Prostokąt skierowany 2
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [right of=0] {$1$};
+  \node[state]         (2) [below of=1] {$2$};
+  \node[state]         (3) [below of=0] {$3$};
+
+  \path (0) edge node {} (2)
+        (1) edge node {} (0)
+        (2) edge node {} (3)
+        (3) edge node {} (1)
+  ; %end path
+
+\end{tikzpicture}
+&
+% Pięciokąt 1
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [below right of=0] {$1$};
+  \node[state]         (2) [below of=1] {$2$};
+  \node[state]         (3) [left of=2] {$3$};
+  \node[state]         (4) [below left of=0] {$4$};
+
+  \path (0) edge node {} (1)
+        (1) edge node {} (2)
+        (2) edge node {} (3)
+        (3) edge node {} (4)
+        (4) edge node {} (0)
+  ; %end path
+
+\end{tikzpicture}
+\\
+% Pięciokąt 2
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [below right of=0] {$1$};
+  \node[state]         (2) [below of=1] {$2$};
+  \node[state]         (3) [left of=2] {$3$};
+  \node[state]         (4) [below left of=0] {$4$};
+
+  \path (0) edge node {} (1)
+        (0) edge node {} (2)
+        (1) edge node {} (4)
+        (2) edge node {} (3)
+        (3) edge node {} (0)
+        (4) edge node {} (0)
+  ; %end path
+
+\end{tikzpicture}
+&
+% Pięciokąt 3
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [below right of=0] {$1$};
+  \node[state]         (2) [below of=1] {$2$};
+  \node[state]         (3) [left of=2] {$3$};
+  \node[state]         (4) [below left of=0] {$4$};
+
+  \path (0) edge node {} (1)
+        (1) edge node {} (3)
+        (2) edge node {} (0)
+        (3) edge node {} (4)
+        (4) edge node {} (2)
+  ; %end path
+
+\end{tikzpicture}
+&
+
+% Pięciokąt 4
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [below right of=0] {$1$};
+  \node[state]         (2) [below of=1] {$2$};
+  \node[state]         (3) [left of=2] {$3$};
+  \node[state]         (4) [below left of=0] {$4$};
+
+  \path (0) edge node {} (4)
+        (1) edge node {} (2)
+        (2) edge node {} (3)
+        (3) edge node {} (0)
+        (4) edge node {} (1)
+  ; %end path
+
+\end{tikzpicture}
+\\
+% Pięciokąt 5
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [below right of=0] {$1$};
+  \node[state]         (2) [below of=1] {$2$};
+  \node[state]         (3) [left of=2] {$3$};
+  \node[state]         (4) [below left of=0] {$4$};
+
+  \path (0) edge node {} (1)
+        (1) edge node {} (4)
+        (2) edge node {} (3)
+        (3) edge node {} (4)
+        (4) edge node {} (0)
+        (4) edge node {} (2)
+  ; %end path
+
+\end{tikzpicture}
+&
+% Pięciokąt 6
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [below right of=0] {$1$};
+  \node[state]         (2) [below of=1] {$2$};
+  \node[state]         (3) [left of=2] {$3$};
+  \node[state]         (4) [below left of=0] {$4$};
+
+  \path (0) edge node {} (2)
+        (1) edge node {} (3)
+        (2) edge node {} (4)
+        (3) edge node {} (4)
+        (4) edge node {} (0)
+        (4) edge node {} (1)
+  ; %end path
+
+\end{tikzpicture}
+&
+% Pięciokąt 7
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [below right of=0] {$1$};
+  \node[state]         (2) [below of=1] {$2$};
+  \node[state]         (3) [left of=2] {$3$};
+  \node[state]         (4) [below left of=0] {$4$};
+
+  \path (0) edge node {} (1)
+        (1) edge node {} (2)
+        (1) edge node {} (3)
+        (2) edge node {} (4)
+        (3) edge node {} (4)
+        (4) edge node {} (0)
+        (4) edge node {} (1)
+  ; %end path
+
+\end{tikzpicture}
+\\
+% Pięciokąt 8
+\begin{tikzpicture}[<->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [below right of=0] {$1$};
+  \node[state]         (2) [below of=1] {$2$};
+  \node[state]         (3) [left of=2] {$3$};
+  \node[state]         (4) [below left of=0] {$4$};
+
+  \path (0) edge node {} (1)
+        (0) edge node {} (2)
+        (0) edge node {} (3)
+        (0) edge node {} (4)
+        (1) edge node {} (2)
+        (1) edge node {} (3)
+        (1) edge node {} (4)
+        (2) edge node {} (3)
+        (2) edge node {} (4)
+        (3) edge node {} (4)
+  ; %end path
+
+\end{tikzpicture}
+&
+% Sześciokąt 1
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [right of=0] {$1$};
+  \node[state]         (2) [below right of=1] {$2$};
+  \node[state]         (3) [below left of=2] {$3$};
+  \node[state]         (4) [left of=3] {$4$};
+  \node[state]         (5) [below left of=0] {$5$};
+
+  \path (0) edge node {} (3)
+        (1) edge node {} (2)
+        (2) edge node {} (5)
+        (3) edge node {} (4)
+        (4) edge node {} (1)
+        (5) edge node {} (0)
+  ; %end path
+
+\end{tikzpicture}
+&
+% Sześciokąt 2
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [right of=0] {$1$};
+  \node[state]         (2) [below right of=1] {$2$};
+  \node[state]         (3) [below left of=2] {$3$};
+  \node[state]         (4) [left of=3] {$4$};
+  \node[state]         (5) [below left of=0] {$5$};
+
+  \path (0) edge node {} (3)
+        (1) edge node {} (2)
+        (2) edge node {} (5)
+        (3) edge node {} (1)
+        (4) edge node {} (0)
+        (5) edge node {} (4)
+  ; %end path
+
+\end{tikzpicture}
+
+
+%
+%\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+%                    semithick]
+%  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+%
+%  \node[initial,state] (A)                    {$q_a$};
+%  \node[state]         (B) [above right of=A] {$q_b$};
+%  \node[state]         (D) [below right of=A] {$q_d$};
+%  \node[state]         (C) [below right of=B] {$q_c$};
+%  \node[state]         (E) [below of=D]       {$q_e$};
+%
+%  \path (A) edge              node {0,1,L} (B)
+%            edge              node {1,1,R} (C)
+%        (B) edge [loop above] node {1,1,L} (B)
+%            edge              node {0,1,L} (C)
+%        (C) edge              node {0,1,L} (D)
+%            edge [bend left]  node {1,0,R} (E)
+%        (D) edge [loop below] node {1,1,R} (D)
+%            edge              node {0,1,R} (A)
+%        (E) edge [bend left]  node {1,0,R} (A);
+%\end{tikzpicture}
+%
+
+
+\end{tabular}
+
+\end{table}

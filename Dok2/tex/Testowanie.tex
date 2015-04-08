@@ -1,0 +1,39 @@
+\section{Testowanie}
+
+Działanie aplikacji zostanie sprawdzone na podstawie dwóch zestawów danych.
+Pierwszy jest zestawem przeznaczonym dla testów akceptacyjnych.
+Zadaniem drugiego będzie sprawdzenie wydajności aplikacji. 
+
+\subsection{Projekt testów akceptacyjnych}
+
+Zestaw tych testów składa się z kilkunastu niewielkich grafów w dwóch wariantach.
+Pierwszy wariant to grafy dla których analitycznie udowodniono istnienie cykli Eulera (spełniają warunek konieczny). Przedstawia je tablica \ref{GrafyZCyklemEulera}.
+Natomiast drugi wariant składa się z grafów, które nie mogą takiego cyklu zawierać.
+Odpowiadają one pierwszemu wariantowi z losową modyfikacją jednej krawędzi grafu z zastrzeżeniem zachowania spójności. Dodanie krawędzi bądź usunięcie zaburza warunek konieczny istnienia cyklu Eulera.
+
+\subsection{Generacja testów wydajnościowych}
+
+Zestaw danych dla testów wydajnościowych będzie pochodzić z generatora grafów eulerowskich.
+Sam generator też jest elementem projektu. 
+Jego działanie opierać się będzie na tworzeniu grafów o zadanej liczbie wierzchołków poprzez losowe rozmieszczenie krawędzi pomiędzy nimi.
+Liczbę krawędzi kontroluje parametr wypełnienia (gęstości), który jest równy proporcji liczby krawędzi w grafie do potencjalnej liczby wszystkich możliwych krawędzi. I tak dla grafu nieskierowanego jest to:
+
+\[ 
+wypelnienie = \frac{liczbaKrawedzi}{\frac{N(N-1)}{2}}
+\]
+dla grafu skierowanego:
+\[ 
+wypelnienie = \frac{liczbaKrawedzi}{N(N-1)}
+\]
+gdzie, N to liczba wierzchołków w grafie.
+
+Dzięki zdefiniowaniu parametru wypełnienia, nie ma potrzeby podawania konkretnej liczby krawędzi podczas generowania nowego grafu. Przykładowo wystarczy informacja, że powinien on być wypełniony co najmniej w 50\%.
+
+Projekt testów zakłada utworzenie zestawu grafów o liczbie wierzchołków wahającej się od 5 do około 10000.
+Wypełnienie będzie zmienne. Ale raczej ze wskazaniem na struktury bardziej zbliżone liczbą krawędzi do grafów pełnych.
+Powodem tego jest fakt, iż grafy o niewielkim wypełnieniu nie stanowią wyzwania dla omawianego algorytmu, którego złożoność jest wprost proporcjonalna do liczby krawędzi.
+
+Każdy test będzie powtarzany ustaloną liczbę razy w celu wyznaczenia parametrów statystycznych czasu wykonania (między innymi: czas średni, mediana, odchylenie standardowe).
+
+
+\input{tex/Testy_akceptacyjne.tex}

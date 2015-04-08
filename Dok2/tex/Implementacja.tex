@@ -1,0 +1,38 @@
+\section{Implementacja}
+
+Zgodnie z założeniami projektu, algorytm Fleury'ego będzie dostarczony w postaci dwóch aplikacji stworzonych w językach Java i C++. 
+Aplikacja testująca wydajność będzie odrębnym modułem.
+
+Z różnych reprezentacji grafów dostępnych w książce \cite{Cormen} został wybrany format wierzchołkowy.
+Struktura grafu będzie więc reprezentowana za pomocą list wierzchołków powiązanych krawędziami, a nie listy krawędzi (jak w konkurencyjnej reprezentacji). To też wpływa na format danych wejściowych -- zaprezentowany na listingu \ref{FormatPliku}. Dane wejściowe mają postać plików.
+
+\subsection{Format danych wejściowych -- grafów}
+
+\begin{figure}
+\begin{quote}
+\label{FormatPliku}
+[directed|undirected] [liczba wierzchołków]
+
+0 : 1 2 3
+
+1 : 2 3 4
+
+3 : 4
+\end{quote}
+\caption{Format pliku przechowujący graf.}
+\end{figure}
+
+
+Pierwsza linia ma wyłącznie charakter specyfikacji i stanowi informacje nadmiarowe.
+Zawiera pojedyncze słowo informujące czy graf przechowywany w pliku jest skierowany (ang. \textit{directed}) lub nieskierowany (ang. \textit{undirected}). 
+Dalej pojawia się liczba wierzchołków w grafie.
+
+Kolejne linie są już bezpośrednią reprezentacją grafu.
+Każda jest rozdzielona znakiem dwukropka na dwie części: pierwsza specyfikuje nazwę wierzchołka, druga jest listą wierzchołków z którymi jest połączony dany wierzchołek.
+W ramach tego projektu nazwy będą liczbami dziesiętnymi.
+
+Obie informacje z linii specyfikacji (pierwszej linii) można wywnioskować na podstawie analizy reszty pliku.
+Liczba wierzchołków to po prostu liczba linii zawierających opis grafu.
+Natomiast typ grafu można wydedukować zauważając, że graf nieskierowany, który zawiera krawędź (u, v) musi również zawierać krawędź (v, u).
+Mimo to linia specyfikacji znacząco ułatwia etap analizy syntaktycznej pliku wejściowego.
+

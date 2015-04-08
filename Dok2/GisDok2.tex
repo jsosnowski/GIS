@@ -1,0 +1,82 @@
+\documentclass[12pt,oneside,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,polish]{babel}
+\usepackage{polski}
+\usepackage{float}
+\usepackage{hyperref} %spis treści niech będzie łączami
+\hypersetup{
+	plainpages=false,
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage{graphicx}
+\usepackage{pbox}
+\usepackage{tabto}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+% ustawienia środowiska algorytm
+\floatname{algorithm}{Algorytm}
+\renewcommand{\algorithmicfunction}{\textbf{funkcja}}
+% koniec ustawień
+
+% blokada dzielenia wyrazów (dla kopiowania do Worda)
+% \hyphenpenalty 10000
+% \exhyphenpenalty 10000
+% koniec ustawień blokady
+
+% Rysowanie grafów, schematów, automatów:
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+\newtheorem{df}{Definicja}[section]
+\newtheorem{concl}[df]{Wniosek}
+
+\begin{document}
+\author{Łukasz Marcinkowski}
+\author{Łukasz Marcinkowski \and Jacek Sosnowski}
+\title{Optymalizacja wydajności wybranych algorytmów grafowych.}
+%\pagenumbering{alph}
+\maketitle
+
+%\input{tex/Specyfikacja_projektu.tex} % kopia z dokumentacji pierwszej 1
+
+%%% Algorytm.tex
+% 1. Szczegółowy opis algorytmu + właściwości.
+% 2. Pseudokod algorytmu
+% 3. Dowód poprawności algorytmu
+% 4. Omówienie złożoności czasowej
+% 5. Potencjalne zastosowania algorytmu
+%%% Implementacja.tex
+% 6. Implementacja - omówienie (chyba była mowa, żeby nie dawać schematu klas)
+% 7. Podstawowe założenia implementacji: 
+%		szczegółowe wersje języków progr., dodatkowe biblioteki, środowisko uruchomieniowe, przenośność kodu
+% 8. Format danych plików wejściowych
+%%% Testowanie.tex
+% 9. Projekt testów
+% 10. Projekt danych dla testów akceptacyjnych.
+
+\input{tex/Algorytm.tex}
+
+\input{tex/Implementacja.tex}
+
+\input{tex/Testowanie.tex}
+
+\pagebreak
+%%%%%
+%% Bibliografia
+
+\begin{thebibliography}{9}
+
+\bibitem{Wojciechowski} J. Wojciechowski, K. Pieńkosz, \emph{Grafy i sieci}, Wydawnictwo Naukowe PWN, 2013
+
+\bibitem{Cormen} T.H. Cormen, C.E. Leiserson, R.L. Rivest, \emph{Wprowadzenie do algorytmów}, Wydawnictwo
+Naukowo-Techniczne, Warszawa 2001.
+
+\end{thebibliography}
+
+\end{document}

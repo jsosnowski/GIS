@@ -1,0 +1,26 @@
+
+\begin{algorithm}
+\caption{Algorytm Fleury'ego dla grafu G.}
+\label{AlgorytmFleury}
+\begin{algorithmic}
+\Require Graf powinien spełniać kryterium z definicji \ref{DefKryterium1} i \ref{DefKryterium2}.
+\State STOS $\gets$ $\emptyset$
+\State u $\gets$ dowolny wierzchołek grafu G.
+\State EULER $\gets$  u
+\State
+\Repeat
+	\If {istnieje krawędź wychodząca z u}
+		\State STOS $\gets$ u
+		\State v $\gets$ dowolny wierzchołek połączony z u krawędzią (u, v)
+		\State usuń z grafu krawędź (u, v)
+		\State u $\gets$ v
+	\Else
+		\State u $\gets$ STOS
+		\State EULER $\gets$ u
+	\EndIf
+\Until {$ STOS \neq \emptyset$}
+\State
+\State \Return EULER \Comment {Zawiera listę wierzchołków w cyklu Eulera}
+\end{algorithmic}
+\end{algorithm}
+
