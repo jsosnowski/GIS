@@ -4,23 +4,44 @@ Zgodnie z założeniami projektu, algorytm Fleury'ego będzie dostarczony w post
 Aplikacja testująca wydajność będzie odrębnym modułem.
 
 Z różnych reprezentacji grafów dostępnych w książce \cite{Cormen} został wybrany format wierzchołkowy.
-Struktura grafu będzie więc reprezentowana za pomocą list wierzchołków powiązanych krawędziami, a nie listy krawędzi (jak w konkurencyjnej reprezentacji). To też wpływa na format danych wejściowych -- zaprezentowany na listingu \ref{FormatPliku}. Dane wejściowe mają postać plików.
+Struktura grafu będzie więc reprezentowana za pomocą list wierzchołków powiązanych krawędziami, a nie listy krawędzi (jak w konkurencyjnej reprezentacji). 
+Z tego powodu, etykietowane będą wyłącznie wierzchołki.
+Krawędzie są rozróżniane na podstawie wierzchołków z którymi są incydentne.
+W przypadku grafów skierowanych, kolejność wierzchołków wyznacza zwrot krawędzi.
+Krawędź skierowana \textit{(u, v)} jest skierowana od wierzchołka \textit{u} do \textit{v}.
+Takie ustalenia wpływają na format danych wejściowych -- zaprezentowany na tablicy \ref{FormatPliku}. Dane wejściowe mają postać plików.
 
 \subsection{Format danych wejściowych -- grafów}
 
-\begin{figure}
-\begin{quote}
-\label{FormatPliku}
-[directed|undirected] [liczba wierzchołków]
+\begin{table}[b]
+\centering
+\begin{tabular}{l|r}
 
-0 : 1 2 3
+\begin{tabular}{@{}l@{}}
+~~~~~~~~~~ \textit{Plik A} ~~~~~~~~~~ \\
+ \\
+undirected 4\\
+0 : 1 2 3\\
+1 : 0 2 3\\
+2 : 0 1 3\\
+3 : 0 1 2\\
 
-1 : 2 3 4
+\end{tabular}
+&
+\begin{tabular}{@{}l@{}}
+~~~~~~~~~~ \textit{Plik B} ~~~~~~~~~~ \\
+\\
+directed 4\\
+0 : 1 3\\
+1 : 2 0\\
+2 : 3 1\\
+3 : 0 2
 
-3 : 4
-\end{quote}
+\end{tabular}
+\end{tabular}
 \caption{Format pliku przechowujący graf.}
-\end{figure}
+\label{FormatPliku}
+\end{table}
 
 
 Pierwsza linia ma wyłącznie charakter specyfikacji i stanowi informacje nadmiarowe.
