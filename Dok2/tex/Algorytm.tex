@@ -11,7 +11,7 @@ Dla ustalenia uwagi cykl Eulera jest rozumiany zgodnie z  definicją \ref{DefCyk
 
 \begin{df}
 \label{DefCyklEulera}
-\textbf{Cyklem eulera} nazywa się drogę zamkniętą przechodzącą dokładnie jeden raz przez każdą krawędź grafu (zorientowanego bądź niezorientowanego).
+\textbf{Cyklem Eulera} nazywa się drogę zamkniętą przechodzącą dokładnie jeden raz przez każdą krawędź grafu (zorientowanego bądź niezorientowanego -- tu zgodnie ze zwrotem krawędzi).
 \end{df}
 
 Graf posiadający cykl Eulera nazywany jest grafem Eulera. Definicja \ref{DefKryterium1} jest kryterium, które jednoznacznie rozstrzyga, czy zadany graf niezorientowany posiada cykl Eulera, czy nie. Kryterium dla grafów zorientowanych jest definicja \ref{DefKryterium2}. Oba twierdzenia są udowodnione między innymi w pracy  \cite{Wojciechowski}.
@@ -23,15 +23,16 @@ Spójny graf niezorientowany jest grafem Eulera wtedy i tylko wtedy, gdy wszystk
 
 \begin{df}
 \label{DefKryterium2}
-Spójny graf zorientowany jest grafem Eulera wtedy i tylko wtedy, gdy dla każdego wierzchołka liczba krawędzi wchodzących jest równa liczbie krawędzi wychodzących - zachodzi równanie:
+Spójny graf zorientowany jest grafem Eulera wtedy i tylko wtedy, gdy dla każdego wierzchołka liczba krawędzi wchodzących jest równa liczbie krawędzi wychodzących -- zachodzi równanie:
 \[d^{+}(v) = d^{-}(v), v \in V \]
 \end{df}
 
 Algorytm poszukujący cyklu Eulera opiera się na twierdzeniach \ref{DefKryterium1} i \ref{DefKryterium2} w celu wykluczenia z analizy grafów, co do których jest pewność, że takiego cyklu zawierać nie mogą.
 Dodatkowo wymuszają one wprowadzenie założenia, że analizowane struktury będą spójne.
 Dla grafów niespójnych, każdą składową spójności można rozpatrywać oddzielnie.
+Ponadto w ramach niniejszego projektu zakłada się, że testowane będą grafy proste.
 
-Do znalezienia cyklu Eulera w zadanym grafie w obu implementacjach zostanie zastosowany algorytm Fleury'ego, który prezentuje listing \ref{AlgorytmFleury}.
+Do znalezienia cyklu Eulera w zadanym grafie w obu implementacjach zostanie zastosowany algorytm Fleury'ego, który jest prezentowany przez wykaz~\ref{AlgorytmFleury}.
 Jego działanie opiera się na wyborze wierzchołka startowego, a następnie budowie ścieżki przez wszystkie krawędzie w grafie, aż do jej zamknięcia w punkcie startowym. 
 W każdym kroku budowy ścieżki, preferowane są te krawędzie, które nie są mostkami (unikanie rozspójnienia grafu).
 Realizacja algorytmu Fleury'ego będzie opierać się o wykorzystanie stosu, który łagodzi konieczność sprawdzania czy krawędź jest mostkiem, co jednocześnie zmniejsza złożoność algorytmu.
@@ -40,7 +41,7 @@ Realizacja algorytmu Fleury'ego będzie opierać się o wykorzystanie stosu, kt�
 \caption{Algorytm Fleury'ego dla grafu G.}
 \label{AlgorytmFleury}
 \begin{algorithmic}
-\Require Graf powinien spełniać kryterium z definicji \ref{DefKryterium1} i \ref{DefKryterium2}.
+\Require G zgodny z def. \ref{DefKryterium1} (niezorientowany) lub \ref{DefKryterium2} (zorientowany).
 \State STOS $\gets$ $\emptyset$
 \State u $\gets$ dowolny wierzchołek grafu G.
 \State EULER $\gets$  u
@@ -69,7 +70,8 @@ Algorytm \ref{AlgorytmFleury} oparty jest na przechodzeniu pomiędzy wierzchołk
 Krawędź raz wybrana zostaje usunięta, dlatego ta procedura zapewnia, że żadna droga nie będzie użyta więcej niż raz.
 
 Cała procedura oparta jest o pętlę, dlatego dla kontynuacji dowodu poprawności wybrany został następujący niezmiennik pętli: \\
-\textit{Przed każdym obiegiem pętli, graf G jest podgrafem grafu wejściowego (w szczególności może nie być spójny), lista EULER zawiera fragment cyklu Eulera oraz STOS zawiera wierzchołki aktualnie rozpatrywanej pewnej drogi zamkniętej (nie musi to być cały poszukiwany cykl Eulera).}
+\textit{Przed każdym obiegiem pętli, graf G jest podgrafem grafu wejściowego (w szczególności może nie być spójny), lista EULER zawiera fragment cyklu Eulera, a STOS zawiera odwiedzone wierzchołki, których nie wszystkie krawędzie zostały jeszcze dodane do cyklu Eulera.}
+%oraz STOS zawiera wierzchołki aktualnie rozpatrywanej pewnej drogi zamkniętej (nie musi to być cały poszukiwany cykl Eulera).}
 
 Na zakończenie powyższy niezmiennik przybiera postać: \\
 \textit{Graf G jest podgrafem grafu wejściowego pozbawionym krawędzi, lista EULER zawiera cykl Eulera, STOS jest pusty.}
@@ -77,14 +79,14 @@ Na zakończenie powyższy niezmiennik przybiera postać: \\
 Tuż przed pierwszą iteracją niezmiennik jest spełniony, bo graf G jest niewłaściwym podgrafem, lista EULER zawiera drogę otwartą rozpoczynającą się w wierzchołku startowym $s$, a STOS jest pusty.
 
 Każda kolejna iteracja poddaje analizie pewien wierzchołek $u$ -- jest on dodawany do stosu.
-Dzięki temu, stos zawiera ''ślad'' pewnej drogi w grafie. 
+Dzięki temu, stos zawiera ,,ślad'' pewnej drogi w grafie. 
 W celu wyznaczenia kolejnego wierzchołka do analizy wybierana jest dowolna krawędź wychodząca z $u$, która następnie zostaje usunięta.
-Ten krok zapewnia, że w każdej iteracji ''znika'' jedna krawędź, co \textbf{spełnia początkową część niezmiennika pętli mówiącą, że graf G jest podgrafem}. Dodatkowo zapewnia, że algorytm \textbf{zatrzyma się po przejrzeniu wszystkich krawędzi} - spełniona część niezmiennika końcowego.
+Ten krok zapewnia, że w każdej iteracji ,,znika'' jedna krawędź, co \textbf{spełnia początkową część niezmiennika pętli mówiącą, że graf G jest podgrafem}. Dodatkowo zapewnia, że algorytm \textbf{zatrzyma się po przejrzeniu wszystkich krawędzi} - spełniona część niezmiennika końcowego.
 
 W przypadku kiedy analizowany wierzchołek $u$ nie posiada krawędzi wychodzących, nie jest dodawany ani do stosu ani do listy. Zgodnie z wnioskiem \ref{Wniosek1} jest on wierzchołkiem startowym $s$.
 \begin{concl}
 \label{Wniosek1}
-W grafie spełniającym kryteria \ref{DefKryterium1} i \ref{DefKryterium2} usuwając kolejno odwiedzane krawędzie (na drodze rozpoczętej w ustalonym wierzchołku $s$) jedyna możliwa sytuacja kiedy nie można wybrać kolejnej krawędzi wyjściowej może wydarzyć się jedynie dla wierzchołka od którego rozpoczęła się dana droga.
+W grafie spełniającym odpowiednie kryterium \ref{DefKryterium1} albo \ref{DefKryterium2} usuwając kolejno odwiedzane krawędzie (na drodze rozpoczętej w ustalonym wierzchołku $s$) jedyna możliwa sytuacja kiedy nie można wybrać kolejnej krawędzi wyjściowej może wydarzyć się jedynie dla wierzchołka od którego rozpoczęła się dana droga.
 \end{concl}
 
 Ponowne osiągnięcie wierzchołka początkowego nie gwarantuje odkrycia cyklu Eulera, ale \textbf{utrzymuje dla każdej iteracji część niezmiennika mówiącą o tym, że STOS zawiera wierzchołki aktualnie rozpatrywanej drogi zamkniętej} (ale bez jej zamykania).
@@ -114,7 +116,7 @@ Ponowne osiągnięcie wierzchołka początkowego nie gwarantuje odkrycia cyklu E
 
 \end{tikzpicture}
 \label{RysDowodPoprawnosci}
-\caption{Ilustracja drogi zamkniętej reprezentowanej przez STOS oraz kilku podgrafów stanowiących drogi rozpoczynające się i kończące w tym samym wierzchołków -- symbolizowane pętlami własnymi.}
+\caption{Ilustracja drogi zamkniętej reprezentowanej przez STOS oraz dwóch podgrafów stanowiących drogi rozpoczynające się i kończące w tym samym wierzchołku (odpowiednio 2 i 4) -- symbolizowane pętlami własnymi.}
 \end{figure}
 
 W tej sytuacji do następnej iteracji brany jest pierwszy wierzchołek ze stosu -- sprawdzane jest, czy on posiada krawędzie wychodzące. 
@@ -131,7 +133,11 @@ Dzięki temu spełnione jest warunek końcowy, który zakładał, że lista EULE
 \subsection{Złożoność algorytmu}
 
 Każda krawędź grafu jest rozpatrywana przez algorytm wyłącznie raz. Z kolei podczas każdego obiegu pętli rozpatrywana jest i usuwana jedna krawędź. 
-Jeśli założy się, że operacje wykonywane podczas każdej iteracji mają koszt jednostkowy, to cały algorytm Fleury'ego ma złożoność O(q). Gdzie q jest liczbą krawędzi w grafie.
+Jeśli założy się, że operacje wykonywane podczas każdej iteracji mają koszt jednostkowy, to cały algorytm Fleury'ego ma złożoność $O(q)$. Gdzie $q$ jest liczbą krawędzi w grafie.
 Założenie kosztu jednostkowego pojedynczej iteracji jest słuszne z uwagi, że wykonywane operacje to dodanie/usunięcie ze stosu lub/i usunięcie krawędzi, które przy użytych strukturach danych mają koszty jednostkowe.
 
-
+Użycie algorytmu wiąże się również ze zgodą na złożoność pamięciową rzędu $O(q)$.
+Jej powodem jest chociażby konieczność przechowywania samej drogi do czasu uzyskania cyklu.
+Ponadto w najgorszym przypadku STOS używany w algorytmie może również wzrosnąć do rozmiaru rzędu liczby krawędzi.
+Oczywiście taka złożoność jest w pełni akceptowalna dla zdecydowanej większości zastosowań i nie stanowi problemu implementacyjnego. 
+Tym bardziej, że w przypadku konkretnej implementacji złożoność samej reprezentacji grafu jest zdecydowanie większa.
