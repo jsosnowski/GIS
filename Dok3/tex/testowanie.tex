@@ -1,0 +1,38 @@
+\section{Testowanie}
+
+\subsection{Wprowadzenie}
+
+Przedmiotem projektu był algorytm odnajdowania cyklu Eulera. 
+Jako cel została przyjęta jego implementacja w językach C++ i Java.
+Podwójna implementacja miała umożliwić eksperyment polegający na dokładnym zbadaniu wydajności obu podejść.
+Ostatecznie w niniejszym sprawozdaniu zostanie uzasadniona odpowiedź na pytania:
+\begin{quote}
+\textit{
+Czy możliwa jest optymalizacja algorytmu poprzez zmianę języka (środowiska) jego implementacji?
+A jeśli tak, to jak bardzo znaczącą poprawę można uzyskać?
+}
+\end{quote}
+
+\subsection{Warunki eksperymentów}
+
+Wstępnie założono, że żadna z implementacji nie zostanie poddana optymalizacji kodu.
+Cenniejsze jest uzyskanie czytelnego rozwiązania, aniżeli skomplikowanego i niezrozumiałego kodu.
+Jest to sytuacja zbliżona do rzeczywistości -- gdzie zazwyczaj nie ma miejsca na wyścig optymalizacji.
+
+Schemat działania jest wspólny dla obu podejść.
+Po pierwsze należy wczytać dane wejściowe (graf) z pliku oraz zbudować odpowiednią strukturę danych w pamięci programu.
+Po drugie należy uruchomić implementację algorytmu Fleury'ego (opisanego dokładnie w poprzedniej dokumentacji).
+
+
+\subsection{Środowisko testowe}
+
+Wszystkie testy były uruchamiane w systemie Ubuntu w wersji 14.04.
+Pomiary wydajności zostały wykonane z wykorzystaniem środowiska języka R (za pomocą narzędzia R-Studio).
+Znaczenie ma również konfiguracja sprzętowa, która w tym przypadku była oparta na dwurdzeniowym procesorze taktowanym zegarem 2,2 GHz.
+Kod źródłowy został skompilowany przez kompilator GCC 4.8 w przypadku języka C++.
+Natomiast aplikacja stworzona w Javie podczas testów była uruchamiana z wykorzystaniem platformy JRE w wersji  1.8.
+
+\textbf{Pomiar czasu} był wykonywany z dokładnością do jednej mikrosekundy.
+Lecz dla zachowania czytelności niniejszej dokumentacji oraz z uwagi na charakter prowadzonych testów pomiar (czas trwania dłuższy niż sekunda), wyniki są zapisywane z mniejszą precyzją.
+
+

@@ -1,0 +1,146 @@
+\subsection{Testy akceptacyjne}
+\label{sub:testy_akceptacyjne}
+
+Zanim oba rozwiązania zostały poddane ocenie wydajności, musiały przejść zestaw testów akceptacyjnych.
+Mowa o poszukiwaniu cykli Eulera w prostych grafach wejściowych.
+Kilka przykładów przedstawia tabela~\ref{Grafy3TestyAkceptacyjne}.
+Więcej grafów znajduje się w katalogach z testami projektu oraz w poprzedniej dokumentacji.
+
+Dla wyjaśnienia, należy zaznaczyć, że ostatni przykład z tabeli \ref{Grafy3TestyAkceptacyjne}
+jest tym samym grafem co pierwszy, lecz z dodaną dodatkową krawędzią $(0,3)$.
+Taka modyfikacja, sprawiła, że nie można znaleźć cyklu Eulera. 
+Istotnie, idąc tą samą drogą, co dla pierwszego grafu, odwiedzone zostaną wszystkie krawędzie oprócz $(0,3)$.
+%To pokazuje, że dodanie dowolnej pojedynczej krawędzi do grafu zawierającego cykl Eulera, prowadzi do struktury w której takiego cyklu znaleźć nie można.
+
+Wynikowy cykl Eulera może być zwracany jako tekst przekazany na standardowe wyjście znakowe systemu operacyjnego lub zapisany do pliku.
+
+\begin{table}
+\caption{Przykłady grafów stanowiących część testów akceptacyjnych.}
+\label{Grafy3TestyAkceptacyjne}
+\center
+
+\setlength\tabcolsep{2pt}
+\begin{tabular}{l|c|l}
+
+Plik wejściowy & Wygląd grafu & Wynik algorytmu \\
+\hline
+\hline
+
+\begin{tabular}{l}
+directed 5	\\
+0 : 1		\\
+1 : 4		\\
+2 : 3		\\
+3 : 4		\\	
+4 : 0 2		\\
+\end{tabular}
+&
+\begin{tabular}{l}
+% Pięciokąt 5
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [below right of=0] {$1$};
+  \node[state]         (2) [below of=1] {$2$};
+  \node[state]         (3) [left of=2] {$3$};
+  \node[state]         (4) [below left of=0] {$4$};
+
+  \path (0) edge node {} (1)
+        (1) edge node {} (4)
+        (2) edge node {} (3)
+        (3) edge node {} (4)
+        (4) edge node {} (0)
+        (4) edge node {} (2)
+  ; %end path
+
+\end{tikzpicture}
+\end{tabular}
+&
+0, 1, 4, 2, 3, 4, 0
+\\
+\hline
+
+\begin{tabular}{l}
+directed 6	\\
+0 : 3		\\
+1 : 2		\\
+2 : 5		\\
+3 : 4		\\
+4 : 1		\\
+5 : 0		\\
+\end{tabular}
+&
+\begin{tabular}{l}
+% Sześciokąt 1
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [right of=0] {$1$};
+  \node[state]         (2) [below right of=1] {$2$};
+  \node[state]         (3) [below left of=2] {$3$};
+  \node[state]         (4) [left of=3] {$4$};
+  \node[state]         (5) [below left of=0] {$5$};
+
+  \path (0) edge node {} (3)
+        (1) edge node {} (2)
+        (2) edge node {} (5)
+        (3) edge node {} (4)
+        (4) edge node {} (1)
+        (5) edge node {} (0)
+  ; %end path
+
+\end{tikzpicture}
+\end{tabular}
+&
+3, 4, 1, 2, 5, 0, 3
+\\
+\hline
+
+\begin{tabular}{l}
+directed 5	\\
+\textbf{0} : 1 \textbf{3}		\\
+1 : 4		\\
+2 : 3		\\
+3 : 4		\\
+4 : 0 2		\\
+\end{tabular}
+&
+\begin{tabular}{l}
+% Pięciokąt 5 z krawedzia (0,3)
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] 		   (0)                    {$0$};
+  \node[state]         (1) [below right of=0] {$1$};
+  \node[state]         (2) [below of=1] {$2$};
+  \node[state]         (3) [left of=2] {$3$};
+  \node[state]         (4) [below left of=0] {$4$};
+
+  \path (0) edge node {} (1)
+  		(0) edge node {} (3)
+        (1) edge node {} (4)
+        (2) edge node {} (3)
+        (3) edge node {} (4)
+        (4) edge node {} (0)
+        (4) edge node {} (2)
+  ; %end path
+
+\end{tikzpicture}
+\end{tabular}
+&
+Euler Path: (not found)
+\\
+\hline
+\hline
+
+\end{tabular}
+
+\end{table}
+
+
+
